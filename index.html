@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ting Kang's Page</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 CSS (loaded BEFORE my own styles so mine win) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
   :root{
     --bg: #fdf6ec;
@@ -23,13 +27,35 @@
     color: var(--ink);
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    padding: 3rem 1.5rem;
+    padding: 0 1.5rem 3rem;
   }
 
   .page{
     max-width: 720px;
     margin: 0 auto;
+    padding-top: 2.5rem;
   }
+
+  /* ---------- NAVBAR (Bootstrap, recoloured to match) ---------- */
+  .navbar{
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .navbar-brand{
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--accent);
+  }
+  .navbar-brand:hover{ color: var(--accent); }
+  .navbar .nav-link{
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active{ color: var(--accent); }
 
   /* ---------- HEADER ---------- */
   header{
@@ -69,6 +95,9 @@
     display: block;
   }
 
+  /* stop the sticky navbar from covering sections when jumping to #about / #video */
+  #about, #video{ scroll-margin-top: 90px; }
+
   /* ---------- BIO BOX ---------- */
   .bio-box{
     background: var(--card);
@@ -88,6 +117,40 @@
     margin: 0;
     color: rgba(46,42,38,0.8);
   }
+  /* ---------- BADGES ---------- */
+  .tag-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1.25rem;
+  }
+  .tag-row .badge{
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.5em 0.9em;
+  }
+  .badge-accent{ background: var(--accent); color: #fff; }
+  .badge-teal{ background: var(--accent-2); color: #fff; }
+  .badge-soft{
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- BUTTON (my own colours, not Bootstrap blue) ---------- */
+  .btn-accent{
+    background: var(--accent);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+  }
+  .btn-accent:hover{
+    background: #f07a47;
+    color: #fff;
+  }
+
   .motto{
     display: inline-block;
     margin-top: 1.25rem;
@@ -138,10 +201,29 @@
 </head>
 <body>
 
+<!-- ---------- BOOTSTRAP NAVBAR ---------- -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container-fluid p-0">
+    <a class="navbar-brand" href="index.html">Ting Kang</a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#video">Travel</a></li>
+        <li class="nav-item"><a class="nav-link" href="fanpage.html">Fanpage</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="page">
 
   <header>
-    <p class="greeting">Hi, I'm Ting Kang!</p>
+    <p class="greeting" id="greeting">Hi, I'm Ting Kang!</p>
     <p class="subtitle">Welcome to my page ✨</p>
   </header>
 
@@ -149,20 +231,34 @@
     <img src="smile-picture.jpg" alt="Ting Kang smiling">
   </div>
 
-  <section class="bio-box">
+  <section class="bio-box" id="about">
     <h2>About Me</h2>
-    <p>Year 2 IS Student🫩
+    <p>Year 2 IS Student 🫩
         <br>
         I LOVE MALA
-        <br>
-        
-w
     </p>
-    
+
+    <!-- ---------- BOOTSTRAP BADGES ---------- -->
+    <div class="tag-row">
+      <span class="badge rounded-pill badge-accent">Year 2 IS</span>
+      <span class="badge rounded-pill badge-teal">Mala 🌶️</span>
+      <span class="badge rounded-pill badge-soft">SMU</span>
+      <span class="badge rounded-pill badge-soft">Web App Dev 2</span>
+    </div>
+
+    <br>
     <span class="motto">live, laugh, love</span>
+
+    <!-- ---------- BOOTSTRAP MODAL TRIGGER ---------- -->
+    <div class="mt-4">
+      <button type="button" class="btn btn-accent"
+              data-bs-toggle="modal" data-bs-target="#funFactModal">
+        Fun fact about me 👀
+      </button>
+    </div>
   </section>
 
-  <section class="video-section">
+  <section class="video-section" id="video">
     <h2>My Favorite Travel Destination</h2>
     <div class="video-wrap">
       <iframe
@@ -175,9 +271,78 @@ w
     <p class="video-caption">Autoplays muted — click to unmute and hear the sound.</p>
   </section>
 
-
-
 </div>
+
+<!-- ---------- BOOTSTRAP MODAL ---------- -->
+<div class="modal fade" id="funFactModal" tabindex="-1" aria-labelledby="funFactLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:16px;">
+      <div class="modal-header" style="border-bottom:1px solid var(--line);">
+        <h5 class="modal-title" id="funFactLabel">Fun fact 🎉</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0" id="funFactText">
+          I can finish a whole pot of mala by myself 🍲 — and I'm currently learning
+          Bootstrap for Web App Dev 2!
+        </p>
+      </div>
+      <div class="modal-footer" style="border-top:1px solid var(--line);">
+        <button type="button" class="btn btn-accent" data-bs-dismiss="modal">Nice!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS (needed for the navbar toggle + modal) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ---------- MY JAVASCRIPT ---------- -->
+<script>
+
+  /* 1. GREETING THAT CHANGES WITH THE TIME OF DAY
+     ------------------------------------------------
+     new Date() gives the current date/time.
+     .getHours() pulls out just the hour, as a number from 0 to 23. */
+
+  const hour = new Date().getHours();
+  let timeGreeting;
+
+  if (hour < 12) {
+    timeGreeting = "Good morning";
+  } else if (hour < 18) {
+    timeGreeting = "Good afternoon";
+  } else {
+    timeGreeting = "Good evening";
+  }
+
+  // find the <p id="greeting"> and change the words inside it
+  document.getElementById("greeting").textContent =
+    timeGreeting + ", I'm Ting Kang!";
+
+
+  /* 2. RANDOM FUN FACT IN THE MODAL
+     ------------------------------------------------
+     An array holds a list of values. Math.random() gives a decimal
+     between 0 and 1, so multiplying by the array length and rounding
+     down with Math.floor() picks a random position in the list. */
+
+  const funFacts = [
+    "I can finish a whole pot of mala by myself 🍲",
+    "I'm a Year 2 Information Systems student at SMU 🎓",
+    "Taiwan is top of my travel list ✈️",
+    "I'm learning Bootstrap and JavaScript this semester 💻"
+  ];
+
+  const modal = document.getElementById("funFactModal");
+
+  // "show.bs.modal" is a Bootstrap event — it runs each time the modal opens
+  modal.addEventListener("show.bs.modal", function () {
+    const randomIndex = Math.floor(Math.random() * funFacts.length);
+    document.getElementById("funFactText").textContent = funFacts[randomIndex];
+  });
+
+</script>
 
 </body>
 </html>
