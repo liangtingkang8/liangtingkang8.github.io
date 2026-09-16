@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ting Kang's Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fdf6ec;
+    --card: #ffffff;
+    --ink: #2e2a26;
+    --accent: #ff8c5a;
+    --accent-2: #6fb3a8;
+    --line: #ece2d2;
+  }
 
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    padding: 3rem 1.5rem;
+  }
+
+  .page{
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .greeting{
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    color: var(--accent);
+    margin: 0;
+  }
+  .subtitle{
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+
+  /* ---------- PHOTO ---------- */
+  .photo-frame{
+    width: 220px;
+    height: 220px;
+    margin: 2rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid var(--card);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 0 0 3px var(--accent);
+    transition: transform 0.3s ease;
+  }
+  .photo-frame:hover{
+    transform: scale(1.04) rotate(-2deg);
+  }
+  .photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- BIO BOX ---------- */
+  .bio-box{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .bio-box h2{
+    margin: 0 0 0.75rem;
+    font-size: 1.4rem;
+  }
+  .bio-box p{
+    margin: 0;
+    color: rgba(46,42,38,0.8);
+  }
+  .motto{
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--accent-2);
+    border-top: 1px dashed var(--line);
+    padding-top: 1rem;
+  }
+
+  /* ---------- VIDEO SECTION ---------- */
+  .video-section{
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .video-section h2{
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .video-wrap{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  }
+  .video-wrap iframe{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .video-caption{
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+
+  footer{
+    text-align: center;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <p class="greeting">Hi, I'm Ting Kang!</p>
+    <p class="subtitle">Welcome to my page ✨</p>
+  </header>
+
+  <div class="photo-frame">
+    <img src="smile-picture.jpg" alt="Ting Kang smiling">
+  </div>
+
+  <section class="bio-box">
+    <h2>About Me</h2>
+    <p>Year 2 IS Student🫩
+        <br>
+        I LOVE MALA
+        <br>
+        
+w
+    </p>
+    
+    <span class="motto">live, laugh, love</span>
+  </section>
+
+  <section class="video-section">
+    <h2>My Favorite Travel Destination</h2>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/BNOv1qCCz0E?autoplay=1&mute=1&rel=0"
+        title="Favorite travel destination video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="video-caption">Autoplays muted — click to unmute and hear the sound.</p>
+  </section>
+
+
+
+</div>
+
+</body>
+</html>
